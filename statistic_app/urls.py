@@ -18,7 +18,8 @@ from django.urls import include, path
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-
+    # dashboard
+    path('django_plotly_dash/', include('django_plotly_dash.urls')),
     # path to djoser and points
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
