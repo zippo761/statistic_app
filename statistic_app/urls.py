@@ -16,10 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+from dashboard.views import ChartData, company_article_list, dash, dash_ajax
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     # dashboard
-    path('django_plotly_dash/', include('django_plotly_dash.urls')),
+    path('companies/', company_article_list, name='companies'),
+    path('api/chart/data/', ChartData.as_view(), name='api-chart-data'),
+    path('dash/', dash),
+    path('_dash', dash_ajax),
     # path to djoser and points
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
