@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import datetime
-import os
+# import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -50,9 +50,6 @@ INSTALLED_APPS = [
 
     # JWT authentication backend library
     'rest_framework_simplejwt',
-
-    # dashboard that build on Flask
-
 ]
 
 MIDDLEWARE = [
@@ -156,7 +153,7 @@ JWT_AUTH = {
 # redis task on db /0
 CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'
 
-CELERY_RESULT_BACKEND = "django-db"
+CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379/0'
 
 # save cache from redis db/1
 CACHES = {
@@ -167,3 +164,7 @@ CACHES = {
 }
 # user default settings  --> cache db /1
 CELERY_CACHE_BACKEND = "default"
+
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
