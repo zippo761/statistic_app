@@ -5,7 +5,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .as_dash import dispatcher
-from .models import CustomsData
+
+# from .models import CustomsData
 
 # Create your views here.
 
