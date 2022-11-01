@@ -11,7 +11,7 @@ from pandas_datareader.data import DataReader
 
 colorscale = cl.scales['9']['qual']['Paired']
 
-df_symbol = pd.read_csv(r'C:\Users\stoka\PycharmProjects\statistic_app\tickers.csv')
+df_symbol = pd.read_csv(r'/home/cabox/workspace/statistic_app/tickers.csv')
 
 def dispatcher(request):
     '''
@@ -74,6 +74,7 @@ def _create_app():
     @app.callback(
     Output('graphs','children'),
     [Input('stock-ticker-input', 'value')])
+
 
     def update_graph(tickers):
         graphs = []

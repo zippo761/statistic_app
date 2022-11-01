@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-yvr$j166s$oki0p_-k&avjppq3cakpjn@x%tirps@fpb+lfx9@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["port-3000-python-green-zebra-stokalyuc328929.preview.codeanywhere.com"]
 
 
 # Application definition
@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'account',
     'dashboard',
+    'django_celery',
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -85,14 +86,21 @@ WSGI_APPLICATION = "statistic_app.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
+DATABASES_FAKE = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'my_db',
+        'NAME': 'postgres',
         'USER': 'postgres',
         'PASSWORD': '123456',
         'HOST': '127.0.0.1',
         'PORT': '5432',
+    }
+}
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
 
@@ -149,7 +157,7 @@ JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=1),
     'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7),
 }
-
+"""
 # redis task on db /0
 CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'
 
@@ -168,3 +176,4 @@ CELERY_CACHE_BACKEND = "default"
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
+"""

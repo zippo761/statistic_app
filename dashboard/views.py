@@ -5,12 +5,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .as_dash import dispatcher
-
-# from .models import CustomsData
-
-# Create your views here.
-
-
+from .models import DashboardData
 
 
 
@@ -23,17 +18,16 @@ class ChartData(APIView):
     permission_classes = []
 
     def get(self, request, format=None):
-        articles = dict()
-        for company in CustomsData.objects.all():
-            if company.articles > 0:
-                articles[company.name] = company.articles
+        dataset = dict()
+        for data in DashboardData.objects.all():
+            dataset[data.data_x] = data.data_y
 
-        articles = sorted(articles.items(), key=lambda x: x[1])
-        articles = dict(articles)
+        data_set = sorted(dataset.items(), key=lambda x: x[1])
+        data_set = dict(data_set)
 
         data = {
-            "article_labels": articles.keys(),
-            "article_data": articles.values(),
+            "article_labels": data_set.keys(),
+            "article_data": data_set.values(),
         }
 
         return Response(data)
