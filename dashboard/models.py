@@ -8,8 +8,3 @@ class StatisticData(models.Model):
 class DashboardData(models.Model):
     data_x = models.CharField(max_length=50)
     data_y = models.CharField(max_length=50)
-
-
-class StatisticData_2(models.Model):
-    data_x = models.CharField(max_length=50)
-    data_y = models.CharField(max_length=50)

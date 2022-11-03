@@ -32,20 +32,24 @@ ALLOWED_HOSTS = ["port-3000-python-green-zebra-stokalyuc328929.preview.codeanywh
 # Application definition
 
 INSTALLED_APPS = [
+    # account of user
     'account',
+    # app for send data -->  visualisation frontend
     'dashboard',
+    # celery. Periodic task to update psql db
     'django_celery',
+    'django_celery_beat',
+    # celery results. Save result in redis
+    "django_celery_results",
+    # base
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    # celery results
-    "django_celery_results",
     # third party package for user registration and authentication endpoints
     'djoser',
-
     # rest API implementation library for django 'rest_framework
     'rest_framework',
 
@@ -86,6 +90,8 @@ WSGI_APPLICATION = "statistic_app.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+
+# base postgres DB
 DATABASES_FAKE = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -97,6 +103,7 @@ DATABASES_FAKE = {
     }
 }
 
+# alternative db for test
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
@@ -157,7 +164,7 @@ JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=1),
     'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7),
 }
-"""
+
 # redis task on db /0
 CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'
 
@@ -176,4 +183,3 @@ CELERY_CACHE_BACKEND = "default"
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
-"""
