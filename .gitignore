@@ -5,6 +5,7 @@ __pycache__/
 
 # PyCharm indexing
 .idea/
+.theia/
 
 # Distribution / packaging
 .Python
