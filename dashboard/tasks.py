@@ -8,7 +8,7 @@ from celery.schedules import crontab
 def setup_periodic_tasks(update_db, **kwargs):
     
     # Executes every Monday morning at 7:30 a.m.
-    update-db.add_periodic_task(
+    update_db.add_periodic_task(
         crontab(hour=7, minute=30, day_of_week=1),
         update_database(),
     )
