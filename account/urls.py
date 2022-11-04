@@ -1,8 +1,7 @@
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
-from .views import UserProfileListCreateView, UserProfileDetailView
-
+from .views import UserProfileDetailView, UserProfileListCreateView
 
 urlpatterns = [
     # gets all user profiles and create a new profile
