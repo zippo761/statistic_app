@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-yvr$j166s$oki0p_-k&avjppq3cakpjn@x%tirps@fpb+lfx9@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["port-3000-python-green-zebra-stokalyuc328929.preview.codeanywhere.com"]
+ALLOWED_HOSTS = ["port-3000-python-green-zebra-stokalyuc328929.preview.codeanywhere.com", "127.0.0.1"]
 
 
 # Application definition
@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'dashboard',
     # celery. Periodic task to update psql db
     'django_celery',
-    'django_celery_beat',
     # celery results. Save result in redis
     "django_celery_results",
     # base
@@ -92,7 +91,7 @@ WSGI_APPLICATION = "statistic_app.wsgi.application"
 
 
 # base postgres DB
-DATABASES_FAKE = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'postgres',
@@ -104,7 +103,7 @@ DATABASES_FAKE = {
 }
 
 # alternative db for test
-DATABASES = {
+DATABASES_ALTER = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
@@ -168,7 +167,7 @@ JWT_AUTH = {
 # redis task on db /0
 CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'
 
-CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379/0'
+CELERY_RESULT_BACKEND = 'django-db'
 
 # save cache from redis db/1
 CACHES = {

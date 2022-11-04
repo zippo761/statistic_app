@@ -16,16 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
-from dashboard.views import ChartData, company_article_list, dash, dash_ajax
+from dashboard.views import ChartData
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    # dashboard
-    path('companies/', company_article_list, name='companies'),
+    # data dashboard
     path('api/chart/data/', ChartData.as_view(), name='api-chart-data'),
-    path('dash/', dash),
-    path('_dash', dash_ajax),
-    # path to djoser and points
+    # path to djoser endpoints
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
     path("api/account/", include("account.urls")),
